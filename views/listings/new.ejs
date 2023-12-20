@@ -1,0 +1,126 @@
+<% layout('/layouts/boilerplate')%>
+
+    <body><br><br>
+        <h2 class="form-heading">Create New Listing</h2>
+        <div class="row">
+            <div class="col-8 offset-2">
+                <form action="/listings" method="post" class="needs-validation" novalidate enctype="multipart/form-data" >
+
+                    <div class="mb-3">
+                        <label for="title" class="form-label"><b>Title</b></label>
+                        <input type=text name="listing[title]" placeholder="enter title" class="form-control" required>
+                        <div class="valid-feedback">
+                           title Looks good!
+                          </div>
+                        <div class="invalid-feedback">
+                            please enter the title!
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="description" class="form-label"><b>Description</b></label>
+                        <textarea name="listing[description]" rows="3" placeholder="Enter the description"
+                            class="form-control" required></textarea>
+                            <div class="invalid-feedback">
+                                please enter the short description!
+                            </div>
+                    </div>
+
+               
+                    <div class="mb-3">
+                        <label for="image" class="form-label"><b>Upload listing image</b></label>
+                        <input type="file" name="listing[image]" class="form-control" required >
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label for="price" class="form-label"><b>Price</b></label>
+                            <input type="number" name="listing[price]" class="form-control "
+                                placeholder="enter the price" required>
+                                <div class="invalid-feedback">
+                                    enter the valid price !
+                                </div>
+                        </div>
+                        <div class="col-md-8">
+                            <label for="location" class="form-label"><b>Location</b></label>
+                            <input type="text" class="form-control " name="listing[location]"
+                                placeholder="enter the location" required>
+                                <div class="invalid-feedback">
+                                    enter the valid location !
+                                </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="country" class="form-label"><b>Country</b></label>
+                        <input type="text" name="listing[country]" class="form-control" placeholder="enter the country" required>
+                        <div class="invalid-feedback">
+                            enter the valid country !
+                        </div>
+                    </div>
+                    <!-- <h4>Categories</h4>
+                    <div class="category-container" >
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="listing[category][trending]">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Trending
+                            </label>
+                        </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="listing[category][rooms]">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Rooms 
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="listing[category][iconicCities]">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Iconic Cities
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="listing[category][mountains]">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Mountains 
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="listing[category][castles]">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Castles 
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="listing[category][amazingpools]">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Amazing Pools 
+                                </label>
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" name="listing[category][camping]">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Camping 
+                                    </label>
+                                    
+                                  </div>
+                                  <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="listing[category][farming]">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Farming 
+                                    </label>
+                                    
+                                  </div>
+                                  <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="listing[category][arctic]">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Arctic 
+                                    </label>
+                                    
+                                  </div>
+                          
+                    </div> -->
+                    <button class="btn btn-dark" type="submit">ADD</button>
+                    <br><br>
+                </form>
+            </div>
+        </div>
+
+    </body>
