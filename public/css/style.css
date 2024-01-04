@@ -155,6 +155,8 @@ form{
 .filter:hover{
     opacity: 1;
     cursor: pointer;
+    transition: all;
+    transition-duration: 500ms;
 }
 
 .hover-underline-animation {

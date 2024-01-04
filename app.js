@@ -55,10 +55,10 @@ const store = MongoStore.create({
     touchAfter:24 *3600,
 });
 store.on("error",()=>{
-    console.log("error in monog session state",err);
+    console.log("error in mongo session state",err);
 })
 const sessionUpdate={
-    store,
+    // store,
     secret:process.env.SECRET,
     resave:false,
     saveUninitialized:true,

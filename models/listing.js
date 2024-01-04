@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const Schema=mongoose.Schema;
 const Review=require("./review.js");
 const User = require("./user.js");
+require("dotenv").config();
+const nodemailer = require("nodemailer");
 const listingSchema= new Schema({
     title: {
         type:String,
@@ -45,17 +47,42 @@ const listingSchema= new Schema({
             
         }
     },
-    // category:{
-    //     type:String,
-    //     array:['trending','rooms','iconicCities','mountains','castles','amazingpools','camping','farming','arctic'],
-    // },
 }
-); //'trending','rooms','iconicCities','mountains','castles','amazingpools','camping','farming','arctic'
+); 
 listingSchema.post("findOneAndDelete",async(listing)=>{
     if(listing){
         await Review.deleteMany({_id:{$in:listing.review}});
     }
 });
+listingSchema.post("save",async function(doc){
+    try{
+        //transporter
+        let userId = doc.owner;
+        let userData = await User.findById(userId);
+        const userName = userData.username;
+        const userEmail = userData.email;                                    
+        console.log(" userEmail-->",userEmail);
+
+    let transporter = nodemailer.createTransport({
+    host:process.env.MAIL_HOST,
+    auth: {
+      user:process.env.MAIL_USER,
+      pass:process.env.MAIL_PASS,
+    },
+})
+    // send mail with defined transport object
+    let info = await transporter.sendMail({
+      from: "Anuj pal 👻",  // sender address
+      to: userEmail, // list of receivers
+      subject: "New Listing Created", // Subject line
+      text: `Hii ${userName} , You have created a new Listing . Thanks for creating Listing.`, // plain text body
+    });
+    console.log("info",info);
+  }
+    catch(err){
+        console.log(err);
+    }
+})
 
 const Listing= mongoose.model("Listing", listingSchema);
 

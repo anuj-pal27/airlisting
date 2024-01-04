@@ -15,7 +15,7 @@ module.exports.index = async (req, res) => {
 
 
 module.exports.renderNewListing = (req, res) => {
-    console.log(req.user);
+    console.log(req.user.email);
     res.render("listings/new.ejs");
 }
 
@@ -38,6 +38,7 @@ module.exports.createListing = async (req, res) => {
         .send()
 
     let url = req.file.path;
+    console.log(req.file.size);
     let filename = req.file.filename;
     const newListing = new Listing(req.body.listing);
     newListing.owner = req.user._id;
@@ -80,3 +81,4 @@ module.exports.deletingListing = async (req, res) => {
     req.flash("success", "Listing Deleted!");
     res.redirect('/listings');
 };
+
