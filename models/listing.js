@@ -78,35 +78,35 @@ listingSchema.post("findOneAndDelete",async(listing)=>{
 })
 
 
-// listingSchema.post("save",async function(doc){
-//     try{
-//         //transporter
-//         let userId = doc.owner;
-//         let userData = await User.findById(userId);
-//         const userName = userData.username;
-//         const userEmail = userData.email;                                    
-//         console.log(" userEmail-->",userEmail);
+listingSchema.post("save",async function(doc){
+    try{
+        //transporter
+        let userId = doc.owner;
+        let userData = await User.findById(userId);
+        const userName = userData.username;
+        const userEmail = userData.email;                                    
+        console.log(" userEmail-->",userEmail);
 
-//     let transporter = nodemailer.createTransport({
-//     host:process.env.MAIL_HOST,
-//     auth: {
-//       user:process.env.MAIL_USER,
-//       pass:process.env.MAIL_PASS,
-//     },
-// })
-//     // send mail with defined transport object
-//     let info = await transporter.sendMail({
-//       from: "Anuj pal 👻",  // sender address
-//       to: userEmail, // list of receivers
-//       subject: "New Listing Created", // Subject line
-//       text: `Hii ${userName} , You have created a new Listing . Thanks for creating Listing.`, // plain text body
-//     });
-//     console.log("info",info);
-//   }
-//     catch(err){
-//         console.log(err);
-//     }
-// })
+    let transporter = nodemailer.createTransport({
+    host:process.env.MAIL_HOST,
+    auth: {
+      user:process.env.MAIL_USER,
+      pass:process.env.MAIL_PASS,
+    },
+})
+    // send mail with defined transport object
+    let info = await transporter.sendMail({
+      from: "Anuj pal 👻",  // sender address
+      to: userEmail, // list of receivers
+      subject: "New Listing Created", // Subject line
+      text: `Hii ${userName} , You have created a new Listing . Thanks for creating Listing.`, // plain text body
+    });
+    console.log("info",info);
+  }
+    catch(err){
+        console.log(err);
+    }
+})
 
 const Listing= mongoose.model("Listing", listingSchema);
 
