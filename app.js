@@ -9,6 +9,7 @@ const { listingSchema , reviewSchema} = require("./schema.js");
 const listingRouter=require('./routes/listing.js');
 const reviewRouter=require('./routes/reviews.js');
 const userRouter= require('./routes/user.js');
+const bookingRouter = require('./routes/booking.js');
 //session
 const session= require("express-session");
 const MongoStore = require("connect-mongo");
@@ -36,7 +37,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 //serving static files
 app.use(express.static(path.join(__dirname, "public")));
-const dbURL= process.env.ATLASDB_URL;
+const dbURL= process.env.DB_URL;
 main().then((res) => {
     console.log("Connected to db");
 
@@ -93,6 +94,7 @@ app.use((req,res,next)=>{
 app.use('/listings',listingRouter);
 app.use('/listings/:id/reviews',reviewRouter);
 app.use('/',userRouter);
+app.use('/',bookingRouter);
 
 //MIDDLEWARES
 app.all("*", (req, res, next) => {

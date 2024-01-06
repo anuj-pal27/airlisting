@@ -24,7 +24,25 @@
                                <p> &#8377;<%=listing.price.toLocaleString("en-IN") %></p>
                                  <p>   <%=listing.location %></p>
                                     <p><%=listing.country %></p>
-                
+            
+                            <form action="/listings/<%=listing._id %>/bookedlist" method="post" novalidate class="needs-validation" >
+                                <div>
+                                <label for="checkInDate" class="form-label">Check-In Date:</label>
+                                <input type="text" id="checkInDate" value="checkInDate" name="checkInDate" placeholder="Select date" class="form-control"  required>
+                                <div class="invalid-feedback">
+                                    please enter the check-in date!
+                                </div>
+                            </div>
+                            <div>
+                                <label for="checkOutDate" class="form-label">Check-Out Date:</label>
+                                    <input type="text" class="form-control" id="checkOutDate" value="checkOutDate" name="checkOutDate" placeholder="Select date" required>
+                                    <div class="invalid-feedback">
+                                        please enter the check-out date!
+                                    </div>
+                                </div>
+        <br>
+                                <button class="btn btn-dark">Book Now</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -33,7 +51,7 @@
         <% if(currUser && listing.owner._id.equals(currUser._id)){ %>
                 <div class="btns offset-3">
                 <a href="/listings/<%=listing._id %>/edit" class="btn btn-dark">Edit</a><br>
-                <form action="/listings/<%=listing._id %>?_method=DELETE" method="post">
+                <form action="/listings/<%=listing._id %>?_method=DELETE" method="post">&nbsp;&nbsp;
                     <button class="btn btn-dark">Delete</button>
                 </form>
             </div>
@@ -102,4 +120,17 @@
             </div><br><br>
             <div>
            <script src="/js/map.js"></script>
+           <script>
+            flatpickr("#checkInDate", {
+              altInput: true,
+              altFormat: "Y-m-d",
+              dateFormat: "Y-m-d",
+            });
+        
+            flatpickr("#checkOutDate", {
+              altInput: true,
+              altFormat: "Y-m-d",
+              dateFormat: "Y-m-d",
+            });
+          </script>
     </body>

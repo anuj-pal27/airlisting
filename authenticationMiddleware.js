@@ -4,6 +4,8 @@ const Listing = require("./models/listing.js");
 const ExpressError = require("./utils/ExtendedError.js");
 const { listingSchema , reviewSchema} = require("./schema.js");
 const Review = require("./models/review.js");
+const Booking = require("./models/booking.js");
+const User = require("./models/user.js");
 module.exports.isLoggedIn = (req,res,next)=>{
     if(!req.isAuthenticated()){
         req.session.redirectUrl = req.originalUrl   //for post login
@@ -58,3 +60,23 @@ module.exports.validateReview = (req, res, next) => {
     } else
         next();
 };
+
+module.exports.isBooked= async(req,res,next)=>{
+    let {id} = req.params;
+    const listing = await Listing.findById(id);
+    const booking = await Booking.findById(listing.booking);
+    const user = await User.findById(res.locals.currUser._id);
+    console.log(booking);
+  
+    if(listing && listing.booking.length > 0){
+           // Check if the current user has booked any of the listings
+           const userBookings = user.booking.map(bookingId => bookingId.toString()); // Convert ObjectIds to strings for comparison
+           const intersection = userBookings.filter(bookingId => listing.booking.includes(bookingId));
+        
+           if (intersection.length > 0) {
+               req.flash('error', 'you have already booked this listing');
+               return res.redirect(`/listings/${id}`);
+           }
+};
+    next();
+}

@@ -3,10 +3,11 @@ body,html{
     padding: 0px;
     display: flex;
     flex-direction: column;
-    font-family: 'ABeeZee', sans-serif;
+    font-family: 'ABeeZee', sans-serif !important ;
     font-family: 'Plus Jakarta Sans', sans-serif  ; 
-    font-family: 'Roboto', sans-serif !important;
+    font-family: 'Roboto', sans-serif;
     font-family: 'Ubuntu', sans-serif;
+    /* font-family: 'Rubik', sans-serif !important; */
     min-height: 100vh;
     max-width: 100%;
     overflow-x: hidden;
@@ -19,6 +20,9 @@ body,html{
     background-color: white;
     width: 100%;
 }
+/* .navbar-nav a{
+    font-weight:4rem !important;
+} */
 .nav-link{
     color: #222222 !important;
 }
@@ -101,10 +105,10 @@ section{
     background-color: white;
 }
 
-form{
+/* form{
     margin-left: 20px;
     margin-right: 20px;
-}
+} */
 
 .form-heading{display: flex;
     justify-content: center;
@@ -196,7 +200,7 @@ form{
     border-radius: 1rem;
     height: 3.4rem;
     padding: 1rem;
-    margin-left: 1rem;
+    /* margin-left: 1rem; */
   }
 .btn-search{
     color: white;
@@ -220,4 +224,23 @@ form{
 }
 .form-check{
     margin-left: 5px;
+}
+.bookingButton{
+    background-color: rgba(212, 78, 11, 0.941) ;
+    border-radius: 10px;
+    color:rgba(255, 255, 255, 0.938) !important;
+    
+}
+.booking-title{
+border-radius: 6px;
+padding: 4px;
+    background-color: rgba(212, 78, 11, 0.732);
+}
+.booking-dates{
+    padding: 10px;
+    background-color: rgba(212, 78, 11, 0.284);
+}
+.booking-heading{
+    color: rgb(8, 7, 7);
+    border: 4px dashed rgba(212, 78, 11, 0.805);
 }
