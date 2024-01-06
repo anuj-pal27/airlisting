@@ -37,7 +37,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 //serving static files
 app.use(express.static(path.join(__dirname, "public")));
-const dbURL= process.env.DB_URL;
+const dbURL= process.env.ATLASDB_URL;
 main().then((res) => {
     console.log("Connected to db");
 
