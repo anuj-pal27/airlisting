@@ -27,7 +27,7 @@ module.exports.bookingNewListing = async(req,res)=>{
        return res.redirect(`/listings/${id}`);
     }
     console.log(checkInDate,checkInDate);
-    let listing = await Listing.findById(id).populate('User');
+    let listing = await Listing.findById(id);
     const user = await User.findById(req.user._id);
     const newBooking = new Booking({listingName:`${listing.title}`,checkInDate,checkOutDate});
     user.booking.push(newBooking);
