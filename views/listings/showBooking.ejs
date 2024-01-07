@@ -1,0 +1,7 @@
+<% layout('/layouts/boilerplate') %>
+<body>
+    <%for (let booking of allbooking){ %>
+        <h1><%=booking.checkInDate%></h1>
+        <h2><%=booking.checkOutDate %></h2>
+        <% } %>
+</body>

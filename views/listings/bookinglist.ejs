@@ -8,10 +8,16 @@
         <div class="col-9 offset-2">
     <%for (let booking of bookingdata){ %>
         <div class="card col listing-card">
-            <h2 class="booking-title">Title:<%=booking.listingName %></h2>
+            <h2 class="booking-title">Listing:<%=booking.listingName %></h2>
             <div class="booking-dates">
             <h3>check In Date:&nbsp;&nbsp;<%=booking.checkInDate.toString().split(" ").splice(1,3).join("-") %></h3>
             <h3>check Out Date:&nbsp;&nbsp;<%=booking.checkOutDate.toString().split(" ").splice(1,3).join("-") %></h3>
+            <form action="/bookinglist/<%=booking._id %>?_method=DELETE" method="post">
+                <button class="btn btn-dark">Delete</button>
+            </form>
+            <!-- <form action="/bookinglist/<%=booking._id %>/show">
+                <button class="btn btn-dark">Show In details</button>
+            </form> -->
         </div>
 <br>      </div>   
      <%} %>  </div> </div>

@@ -6,9 +6,10 @@ const { listingSchema , reviewSchema} = require("./schema.js");
 const Review = require("./models/review.js");
 const Booking = require("./models/booking.js");
 const User = require("./models/user.js");
+
 module.exports.isLoggedIn = (req,res,next)=>{
     if(!req.isAuthenticated()){
-        req.session.redirectUrl = req.originalUrl   //for post login
+        req.session.redirectUrl = req.originalUrl ;  //for post login
         req.flash("error","you must be logged in to create a listing");
         return res.redirect("/login");
     }
