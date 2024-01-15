@@ -78,11 +78,11 @@ listingSchema.post("findOneAndDelete",async(listing)=>{
 })
 
 
-listingSchema.post("save",async function(doc){
+listingSchema.post("save",async function(listing){
     try{
         //transporter
-        let userId = doc.owner;
-        let userData = await User.findById(userId);
+        let bookingId = listing.booking;
+        let userData = await User.findOne( {booking:{$in:bookingId}} );
         const userName = userData.username;
         const userEmail = userData.email;                                    
         console.log(" userEmail-->",userEmail);
