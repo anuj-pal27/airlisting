@@ -81,10 +81,14 @@ listingSchema.post("findOneAndDelete",async(listing)=>{
 listingSchema.post("save",async function(listing){
     try{
         //transporter
+        let userId = listing.owner;
         let bookingId = listing.booking;
-        let userData = await User.findOne( {booking:{$in:bookingId}} );
+        let userData = await User.findById(userId);
+        let bookedName= await User.findOne({booking:{$in:bookingId}});
         const userName = userData.username;
-        const userEmail = userData.email;                                    
+        const userEmail = userData.email;   
+        const bookedUser= bookedName.username;
+        const bookedEmail= bookedName.email;
         console.log(" userEmail-->",userEmail);
 
     let transporter = nodemailer.createTransport({
@@ -99,7 +103,7 @@ listingSchema.post("save",async function(listing){
       from: "Anuj pal 👻",  // sender address
       to: userEmail, // list of receivers
       subject: "New Listing Created", // Subject line
-      text: `Hii ${userName} , You have created a new Listing . Thanks for creating Listing.`, // plain text body
+      text: `Hii ${userName} , your listing have been booked by ${bookedUser}.for further communication you can communicate through email ${bookedEmail} `, // plain text body
     });
     console.log("info",info);
   }
